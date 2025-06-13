@@ -1,0 +1,48 @@
+package com.example.Course;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/courses")
+public class CourseController {
+
+    private final CourseService service;
+
+    @Autowired
+    public CourseController(CourseService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public List<Course> getAllCourses() {
+        return service.getAllCourses();
+    }
+
+    @GetMapping("/{id}")
+    public Course getCourseById(@PathVariable int id) {
+        return service.getCourseById(id);
+    }
+
+    @GetMapping("/instructor/{name}")
+    public List<Course> getCoursesByInstructor(@PathVariable String name) {
+        return service.getCoursesByInstructor(name);
+    }
+
+    @PostMapping
+    public Course addCourse(@RequestBody Course course) {
+        return service.addCourse(course);
+    }
+
+    @PutMapping("/{id}")
+    public Course updateCourse(@PathVariable int id, @RequestBody Course course) {
+        return service.updateCourse(id, course);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteCourse(@PathVariable int id) {
+        service.deleteCourse(id);
+        return "Course with ID " + id + " deleted successfully";
+    }
+}

@@ -1,0 +1,11 @@
+package com.example.Course;
+
+public class CourseContoller {
+	private CourseService Service;
+
+	public CourseContoller(CourseService service) {
+		super();
+		this.Service = service;
+	}
+	
+}

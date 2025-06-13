@@ -1,0 +1,45 @@
+package com.example.Course;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+@Service
+public class CourseService {
+	private CourseRepository repository;
+
+	public CourseService() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public CourseService(CourseRepository repository) {
+		super();
+		this.repository = repository;
+	}
+	  List<Course> getAllCourses(){
+		  return repository.findAll();
+	  }
+	    Course getCourseById(int id) {
+	    	return repository.findById(id).get();
+	    }
+	    List<Course> getCoursesByInstructor(String name){
+	    	return repository.findByInstructor(name);
+	    };
+	    Course addCourse(Course course) {
+	    	return repository.save(course);
+	    };
+	    Course updateCourse(int id, Course course) {
+	    	course.setId(id);
+	    	return repository.save(course);
+	    };
+	    void deleteCourse(int id) {
+	    	repository.deleteById(id);
+	    };
+	
+	
+	
+	
+	
+	
+}
